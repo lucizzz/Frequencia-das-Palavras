@@ -1,5 +1,9 @@
 from tkinter import *
 
+def Apagar():  
+    texto_entry.delete('1.0', 'end')                     
+    texto_entry.insert('1.0', '')           
+
 def Texto_Vermelho(texto, x, y):
     Escrever_Contador(0)
     lb_texto_vermelho.config(
@@ -59,7 +63,7 @@ def Funcao(evento=None):
 root = Tk()
 # TELA
 root.title("Frequencia das Palavras")
-root.geometry('650x600')
+root.geometry('650x600-30+30')
 root.minsize(width=600, height= 650)
 root.resizable(True, True)
 
@@ -129,6 +133,22 @@ botao_1.place(
     relheight=0.080,
     relwidth=0.1
     )
+
+botao_2 = Button(
+    frame_1,
+    font=('Calibri bold', 13),
+    text='Limpar',
+    bd='1',
+    bg = '#dae3f2',
+    fg = '#7c8cb9',
+    command=Apagar
+    )
+botao_2.place(
+    relx=0.05,
+    rely=0.613,
+    relheight=0.080,
+    relwidth=0.15
+)
 
 #FRAME2 onde ta a resposta:
 frame_2 = Frame(root, bg='#dae3f2')
