@@ -1,17 +1,31 @@
 from tkinter import *
 
+def Texto_Vermelho(texto, x, y):
+    Escrever_Contador(0)
+    lb_nexiste.config(
+        text=texto,
+        font=('Calibri bold', 15),
+        bg='#dae3f2',
+        fg='red'
+        )
+    lb_nexiste.place(
+        relx = x,
+        rely = y
+        )
+
 def Escrever_Contador(contador):
-    resposta.configure(state='normal')   
+    resposta.config(state='normal')   
     resposta.delete('1.0', 'end')                     
     resposta.insert('1.0', contador)           
-    resposta.configure(state='disabled')
+    resposta.config(state='disabled')
     
 def Funcao():
     contador = 0
     i = 0
+    
     list = texto_entry.get("1.0", "end")
     list = list.lower().strip().split(" ")
-
+    
     b = palavra_entry.get("1.0", "end") 
     b = b.lower().strip()
     
@@ -24,42 +38,16 @@ def Funcao():
     
     if contador !=0:
         if list == ['']:
-            lb_nexiste.configure(foreground='red')
-            lb_nexiste.place(
-                relx=0.40,
-                rely=0.58
-                )
-            lb_nexiste.config(
-                text = 'Digite algum texto',
-                bg='#dae3f2'
-                )
+            Texto_Vermelho("Digite algum texto", 0.40, 0.58)
         else:
-            lb_nexiste.configure(foreground='#dae3f2')
+            lb_nexiste.config(foreground='#dae3f2')
             Escrever_Contador(contador) 
     else:
         if i == 0:
-            lb_nexiste.place(
-                relx=0.35,
-                rely=0.58
-                )
-            lb_nexiste.config(
-                text = 'A palavra não existe no texto',
-                bg='#dae3f2',
-                fg='#7c8cb9'
-                )
-            lb_nexiste.configure(foreground='red')
+            Texto_Vermelho("A palavra não existe no texto", 0.35, 0.58)
             Escrever_Contador(contador)
         else:
-            lb_nexiste.place(
-                relx=0.3,
-                rely=0.58
-                )
-            lb_nexiste.config(
-                text = 'Escreva a palavra que deseja ver a frequencia',
-                bg='#dae3f2',
-                fg='#7c8cb9'
-                )
-            lb_nexiste.configure(foreground='red')
+            Texto_Vermelho('Escreva a palvra que deseja ver a frequencia', 0.3, 0.58)
             Escrever_Contador(contador)
           
 root = Tk()
@@ -162,18 +150,17 @@ resposta = Text(
     font = (None, 15),
     state='disabled'
     )
+
 resposta.place(
     relx=0.43,
     rely=0.30,
     relheight=0.27,
     relwidth=0.20
     )
-
+    
 #CAIXA INVISIVEL para caso não existir a palavra
-lb_nexiste = Label(
-    frame_2,
-    font=('Calibri bold', 15),
-    foreground='#dae3f2'
-    )
+lb_nexiste = Label(frame_2)
+
+Escrever_Contador(0)
 
 root.mainloop()
