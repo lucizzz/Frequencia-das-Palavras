@@ -1,5 +1,11 @@
 from tkinter import *
 
+def Escrever_Contador(contador):
+    resposta.configure(state='normal')   
+    resposta.delete('1.0', 'end')                     
+    resposta.insert('1.0', contador)           
+    resposta.configure(state='disabled')
+    
 def Funcao():
     contador = 0
     i = 0
@@ -29,10 +35,7 @@ def Funcao():
                 )
         else:
             lb_nexiste.configure(foreground='#dae3f2')
-            resposta.configure(state='normal')   
-            resposta.delete('1.0', 'end')                     
-            resposta.insert('1.0', contador)           
-            resposta.configure(state='disabled') 
+            Escrever_Contador(contador) 
     else:
         if i == 0:
             lb_nexiste.place(
@@ -45,10 +48,7 @@ def Funcao():
                 fg='#7c8cb9'
                 )
             lb_nexiste.configure(foreground='red')
-            resposta.configure(state='normal')
-            resposta.delete("1.0", "end")
-            resposta.insert('1.0', contador)
-            resposta.configure(state='disable')
+            Escrever_Contador(contador)
         else:
             lb_nexiste.place(
                 relx=0.3,
@@ -60,10 +60,7 @@ def Funcao():
                 fg='#7c8cb9'
                 )
             lb_nexiste.configure(foreground='red')
-            resposta.configure(state='normal')
-            resposta.delete("1.0", "end")
-            resposta.insert('1.0', contador)
-            resposta.configure(state='disable')
+            Escrever_Contador(contador)
           
 root = Tk()
 # TELA
@@ -162,6 +159,7 @@ lb_resposta.place(
 
 resposta = Text(
     frame_2,
+    font = (None, 15),
     state='disabled'
     )
 resposta.place(
