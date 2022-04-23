@@ -2,30 +2,36 @@ from tkinter import *
 
 def Texto_Vermelho(texto, x, y):
     Escrever_Contador(0)
-    lb_nexiste.config(
+    lb_texto_vermelho.config(
         text=texto,
         font=('Calibri bold', 15),
         bg='#dae3f2',
         fg='red'
         )
-    lb_nexiste.place(
+    lb_texto_vermelho.place(
         relx = x,
         rely = y
         )
 
 def Escrever_Contador(contador):
-    resposta.config(state='normal')   
-    resposta.delete('1.0', 'end')                     
-    resposta.insert('1.0', contador)           
-    resposta.config(state='disabled')
+    if contador == 0:
+        resposta.config(state='normal')
+        resposta.delete('1.0', 'end')
+        resposta.insert('1.0', ' ')
+        resposta.config(state='normal')
+    else:
+        resposta.config(state='normal')   
+        resposta.delete('1.0', 'end')                     
+        resposta.insert('1.0', contador)           
+        resposta.config(state='disabled')
     
-def Funcao():
+def Funcao(evento=None):
     contador = 0
     i = 0
-    
+
     list = texto_entry.get("1.0", "end")
     list = list.lower().strip().split(" ")
-    
+
     b = palavra_entry.get("1.0", "end") 
     b = b.lower().strip()
     
@@ -40,7 +46,7 @@ def Funcao():
         if list == ['']:
             Texto_Vermelho("Digite algum texto", 0.40, 0.58)
         else:
-            lb_nexiste.config(foreground='#dae3f2')
+            lb_texto_vermelho.config(foreground='#dae3f2')
             Escrever_Contador(contador) 
     else:
         if i == 0:
@@ -157,9 +163,10 @@ resposta.place(
     relheight=0.27,
     relwidth=0.20
     )
-    
-#CAIXA INVISIVEL para caso não existir a palavra
-lb_nexiste = Label(frame_2)
+
+lb_texto_vermelho = Label(frame_2)
+
+palavra_entry.bind('<Return>', Funcao)
 
 Escrever_Contador(0)
 
