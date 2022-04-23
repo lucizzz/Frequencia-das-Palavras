@@ -63,8 +63,7 @@ def Funcao(evento=None):
 root = Tk()
 # TELA
 root.title("Frequencia das Palavras")
-root.geometry('650x600-30+30')
-root.minsize(width=600, height= 650)
+root.geometry('650x600+650+200')
 root.resizable(True, True)
 
 #FRAME1 onde esta a caixa do texto, da palavra e o botão:
